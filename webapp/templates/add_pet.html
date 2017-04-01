@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <form action="{{ data.url }}" id="form" method="POST">
+      <div class="row wide">
+        <label for=pet_name>Pet Name: </label>
+        <input type="text" name="pet_name" value="{{ data.pet_name }}">
+      </div>
+      <div class="row wide">
+        <label for=owner_id>Owner: </label>
+        <select name="owner_id">
+          <option value="" selected hidden>Please Choose...</option>
+          {% for item in data.persons.objects %}
+          <option value={{ item.id }}>{{ item.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="row wide">
+        <input type=submit value=Submit>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+  <script>
+    function delete_pet(obj) {
+      if (confirm('Are you sure you want to delete it?')) {
+        var url = obj.getAttribute('href');
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', url);
+        document.body.appendChild(form);
+        form.submit();
+      }
+      return false;
+    }
+  </script>
+  <div>
+    {% if data.pets.num_results > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in data.pets.objects %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.owner.name }}</td>
+          <td><a href={{ url_for('del_pet', id=item.id) }} onclick="return delete_pet(this)">remove</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p><b>List is empty.</b></p>
+    {% endif %}
+    <br />
+    <form method=get action={{ url_for('add_pet') }}>
+      <input type=submit value='Add New' />
+    </form>
+  </div>
+{% endblock %}

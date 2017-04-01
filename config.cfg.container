@@ -1,0 +1,2 @@
+import os
+API_URI = os.environ['API_URL']

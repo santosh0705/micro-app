@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <form action="{{ data.url }}" id="form" method="POST">
+      <div class="row wide">
+        <label for=person_name>Person Name: </label>
+        <input type="text" name="person_name" value="{{ data.person_name }}">
+      </div>
+      <div class="row wide">
+        <input type=submit value=Submit>
+      </div>
+    </form>
+  </div>
+{% endblock %}

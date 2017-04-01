@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div>
+    <p>Person Name: <b>{{ data.person_details.name }}</b></p>
+    {% if data.person_details.pets %}
+    <p><b>List of pets:</b></p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in data.person_details.pets %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p><b>Pet list is empty.</b></p>
+    {% endif %}
+  </div>
+{% endblock %}

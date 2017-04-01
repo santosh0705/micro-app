@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+  {% block head %}
+    <title>{{ config['APPNAME'] }} | {{ data.pageTitle }}</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+   
+  {% endblock %}
+  </head>
+  <body>
+    <div class=page>
+      <h1>{{ config['APPNAME'] }}</h1>
+      <div class=topnav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('person') }}">Persons</a>
+      <a href="{{ url_for('pet') }}">Pets</a>
+      </div>
+      <h2>{{ data.pageTitle }}</h2>
+      {% for category, message in get_flashed_messages(with_categories=true) %}
+        <div class='flash-{{ category }}'><b>{% filter upper %}{{ category }}:{% endfilter %}</b> {{ message }}</div>
+      {% endfor %}
+      {% block body %}{% endblock %}
+      <div class=row>
+        <hr>
+        Request processed in host: <b><i>{{ config['HOSTNAME'] }}</i></b>
+      </div>
+    </div>
+  </body>
+</html>

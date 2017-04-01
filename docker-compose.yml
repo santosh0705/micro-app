@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  micro-app:
+    build:
+      context: .
+    image: micro-app
+    container_name: app-server
+    environment:
+      - API_URL=http://api-server:8000/api
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - "8001:8001"
